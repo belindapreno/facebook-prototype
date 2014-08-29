@@ -10,9 +10,12 @@ import UIKit
 
 class RequestViewController: UIViewController {
 
+    @IBOutlet weak var requestScrollView: UIScrollView!
+    @IBOutlet weak var peopleImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        requestScrollView.contentSize = peopleImageView.frame.size
+        
         // Do any additional setup after loading the view.
     }
 

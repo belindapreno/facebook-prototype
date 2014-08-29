@@ -10,12 +10,35 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var feedImageView: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
 
+        scrollView.contentSize = feedImageView.frame.size
+    
+    
+    }
+    
+//    scrollView.contentInset.top = 0
+//    scrollView.scrollIndicatorInset.top=0
+
+  
+    @IBAction func onLikeButton(sender: AnyObject) {
+        
+        if (likeButton.selected) {
+            likeButton.selected = false
+        } else {
+            likeButton.selected = true
+        }
+        
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

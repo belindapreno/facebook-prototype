@@ -10,9 +10,11 @@ import UIKit
 
 class MoreViewController: UIViewController {
 
+    @IBOutlet weak var moreImageView: UIImageView!
+    @IBOutlet weak var moreScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        moreScrollView.contentSize = moreImageView.frame.size
         // Do any additional setup after loading the view.
     }
 

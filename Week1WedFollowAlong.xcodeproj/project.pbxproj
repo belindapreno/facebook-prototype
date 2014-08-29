@@ -12,6 +12,12 @@
 		6A3D79D71992E75D000AEBFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A3D79D51992E75D000AEBFC /* Main.storyboard */; };
 		6A3D79D91992E75D000AEBFC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3D79D81992E75D000AEBFC /* Images.xcassets */; };
 		6A3D79E51992E75D000AEBFC /* Week1WedFollowAlongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D79E41992E75D000AEBFC /* Week1WedFollowAlongTests.swift */; };
+		6AC133051992EA8B00C9D88F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC133041992EA8B00C9D88F /* FeedViewController.swift */; };
+		6AC133071992F4C800C9D88F /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC133061992F4C800C9D88F /* RequestViewController.swift */; };
+		6AC133091992F4D700C9D88F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC133081992F4D700C9D88F /* MessagesViewController.swift */; };
+		6AC1330B1992F4E100C9D88F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1330A1992F4E100C9D88F /* NotificationViewController.swift */; };
+		6AC1330D1992F4E700C9D88F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1330C1992F4E700C9D88F /* MoreViewController.swift */; };
+		6AC1330F1992F75C00C9D88F /* ThrillistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1330E1992F75C00C9D88F /* ThrillistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,12 @@
 		6A3D79DE1992E75D000AEBFC /* Week1WedFollowAlongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Week1WedFollowAlongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3D79E31992E75D000AEBFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A3D79E41992E75D000AEBFC /* Week1WedFollowAlongTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week1WedFollowAlongTests.swift; sourceTree = "<group>"; };
+		6AC133041992EA8B00C9D88F /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		6AC133061992F4C800C9D88F /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		6AC133081992F4D700C9D88F /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		6AC1330A1992F4E100C9D88F /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		6AC1330C1992F4E700C9D88F /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		6AC1330E1992F75C00C9D88F /* ThrillistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrillistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				6A3D79D11992E75D000AEBFC /* AppDelegate.swift */,
-				6A3D79D31992E75D000AEBFC /* ViewController.swift */,
+				6A417CBA19B03B2C00B5B333 /* View Controllers */,
 				6A3D79D51992E75D000AEBFC /* Main.storyboard */,
 				6A3D79D81992E75D000AEBFC /* Images.xcassets */,
 				6A3D79CF1992E75D000AEBFC /* Supporting Files */,
@@ -107,6 +119,20 @@
 				6A3D79E31992E75D000AEBFC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6A417CBA19B03B2C00B5B333 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6A3D79D31992E75D000AEBFC /* ViewController.swift */,
+				6AC133041992EA8B00C9D88F /* FeedViewController.swift */,
+				6AC133061992F4C800C9D88F /* RequestViewController.swift */,
+				6AC133081992F4D700C9D88F /* MessagesViewController.swift */,
+				6AC1330C1992F4E700C9D88F /* MoreViewController.swift */,
+				6AC1330A1992F4E100C9D88F /* NotificationViewController.swift */,
+				6AC1330E1992F75C00C9D88F /* ThrillistViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +234,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AC1330D1992F4E700C9D88F /* MoreViewController.swift in Sources */,
+				6AC133091992F4D700C9D88F /* MessagesViewController.swift in Sources */,
 				6A3D79D41992E75D000AEBFC /* ViewController.swift in Sources */,
+				6AC1330B1992F4E100C9D88F /* NotificationViewController.swift in Sources */,
+				6AC133051992EA8B00C9D88F /* FeedViewController.swift in Sources */,
+				6AC133071992F4C800C9D88F /* RequestViewController.swift in Sources */,
+				6AC1330F1992F75C00C9D88F /* ThrillistViewController.swift in Sources */,
 				6A3D79D21992E75D000AEBFC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Week1WedFollowAlong/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -337,6 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Week1WedFollowAlong/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -395,6 +429,7 @@
 				6A3D79EA1992E75D000AEBFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6A3D79EB1992E75D000AEBFC /* Build configuration list for PBXNativeTarget "Week1WedFollowAlongTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +438,7 @@
 				6A3D79ED1992E75D000AEBFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

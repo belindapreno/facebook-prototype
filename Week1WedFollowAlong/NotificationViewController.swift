@@ -10,9 +10,11 @@ import UIKit
 
 class NotificationViewController: UIViewController {
 
+    @IBOutlet weak var notificationImageView: UIImageView!
+    @IBOutlet weak var notificationScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        notificationScrollView.contentSize = notificationImageView.frame.size
         // Do any additional setup after loading the view.
     }
 
