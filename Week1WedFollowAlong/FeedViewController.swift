@@ -13,6 +13,10 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postImageView2: UIImageView!
+    @IBOutlet var postImage1TapGesture: UITapGestureRecognizer!
+    @IBOutlet var postImage2TapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +27,6 @@ class FeedViewController: UIViewController {
     
     
     }
-    
-//    scrollView.contentInset.top = 0
-//    scrollView.scrollIndicatorInset.top=0
 
   
     @IBAction func onLikeButton(sender: AnyObject) {
@@ -41,18 +42,20 @@ class FeedViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
+    @IBAction func onTapPhoto(sender: AnyObject) {
+        performSegueWithIdentifier("photoCustomSegue", sender: self)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        var destinationViewController = segue.destinationViewController as PhotoViewController
+        
+        
+        destinationViewController.image = self.postImageView.image    
+        
+    }
 
 }
