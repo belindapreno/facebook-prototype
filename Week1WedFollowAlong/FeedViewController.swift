@@ -18,6 +18,8 @@ class FeedViewController: UIViewController {
     @IBOutlet var postImage1TapGesture: UITapGestureRecognizer!
     @IBOutlet var postImage2TapGesture: UITapGestureRecognizer!
     
+    var tappedImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,15 +48,18 @@ class FeedViewController: UIViewController {
     }
     
     @IBAction func onTapPhoto(sender: AnyObject) {
+        
+        tappedImageView = sender.view as UIImageView
+        
         performSegueWithIdentifier("photoCustomSegue", sender: self)
-
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         var destinationViewController = segue.destinationViewController as PhotoViewController
         
         
-        destinationViewController.image = self.postImageView.image    
+        destinationViewController.image = tappedImageView.image
         
     }
 
