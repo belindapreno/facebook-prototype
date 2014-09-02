@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1DC5BA19B665A2004C31D4 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1DC5B919B665A2004C31D4 /* CustomSegue.swift */; };
 		6A3D79D21992E75D000AEBFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D79D11992E75D000AEBFC /* AppDelegate.swift */; };
 		6A3D79D41992E75D000AEBFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D79D31992E75D000AEBFC /* ViewController.swift */; };
 		6A3D79D71992E75D000AEBFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A3D79D51992E75D000AEBFC /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A1DC5B919B665A2004C31D4 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		6A3D79CC1992E75C000AEBFC /* Week1WedFollowAlong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Week1WedFollowAlong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3D79D01992E75D000AEBFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A3D79D11992E75D000AEBFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,9 +128,10 @@
 		6A417CBA19B03B2C00B5B333 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6A1DC5B919B665A2004C31D4 /* CustomSegue.swift */,
 				6A417CBB19B03D1B00B5B333 /* PhotoViewController.swift */,
-				6A3D79D31992E75D000AEBFC /* ViewController.swift */,
 				6AC133041992EA8B00C9D88F /* FeedViewController.swift */,
+				6A3D79D31992E75D000AEBFC /* ViewController.swift */,
 				6AC133061992F4C800C9D88F /* RequestViewController.swift */,
 				6AC133081992F4D700C9D88F /* MessagesViewController.swift */,
 				6AC1330C1992F4E700C9D88F /* MoreViewController.swift */,
@@ -245,6 +248,7 @@
 				6A417CBC19B03D1B00B5B333 /* PhotoViewController.swift in Sources */,
 				6AC133071992F4C800C9D88F /* RequestViewController.swift in Sources */,
 				6AC1330F1992F75C00C9D88F /* ThrillistViewController.swift in Sources */,
+				6A1DC5BA19B665A2004C31D4 /* CustomSegue.swift in Sources */,
 				6A3D79D21992E75D000AEBFC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+class FeedViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
@@ -20,6 +20,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     var tappedImageView: UIImageView!
     var isPresenting: Bool!
+    var transition: CustomSegue!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,42 +62,39 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        
+        transition = CustomSegue()
+        var duration = 0.4
+        
+        var window = UIApplication.sharedApplication().keyWindow
+        var frame = window.convertRect(tappedImageView.frame, fromView: self.view)
+        var newImageView = UIImageView(image: tappedImageView.image)
+        newImageView.frame = frame
+        newImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        window.addSubview(newImageView)
+        
+        transition.duration = duration
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            newImageView.frame = CGRect(x: 0, y: 52, width: 320, height: 480)
+            }) { (finished: Bool) -> Void in
+                UIView.animateWithDuration(0.4, animations: {
+                    newImageView.alpha = 0
+                    }, completion: { (finished: Bool) -> Void in
+                        newImageView.removeFromSuperview()
+                })
+        }
+
+
+            
         var destinationViewController = segue.destinationViewController as PhotoViewController
         destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationViewController.transitioningDelegate = self
-        
+        destinationViewController.transitioningDelegate = transition
         destinationViewController.image = tappedImageView.image
         
     }
     
-    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-        isPresenting = true
-        return self
-    }
     
-    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-        isPresenting = false
-        return self
-    }
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning!) -> NSTimeInterval {
-        // The value here should be the duration of the animations scheduled in the animationTransition method
-        return 0.4
-    }
-    
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning!) {
-        println("animating transition")
-        var containerView = transitionContext.containerView()
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        
-        containerView.addSubview(toViewController.view)
-        toViewController.view.alpha = 0
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            toViewController.view.alpha = 1
-            }) { (finished: Bool) -> Void in
-                transitionContext.completeTransition(true)
-        }
-    }
-
 }
