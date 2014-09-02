@@ -36,5 +36,8 @@ class PhotoViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
 }
