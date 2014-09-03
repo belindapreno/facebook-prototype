@@ -25,43 +25,46 @@ class CustomSegue: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning!) -> NSTimeInterval {
         // The value here should be the duration of the animations scheduled in the animationTransition method
-        return 0.4
+        return duration
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning!) {
-        println("animating transition")
         var containerView = transitionContext.containerView()
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
         
         if (isPresenting == true) {
-            
             containerView.addSubview(toViewController.view)
-            
             toViewController.view.alpha = 0
             
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
-                toViewController.view.alpha = 1
+            UIView.animateWithDuration(duration,
+                delay: 0,
+                options: nil,
+                animations: {
+                
+                    
+                    toViewController.view.alpha = 1
+                    
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
             }
             
         } else {
             
-            UIView.animateWithDuration(0.4,
-            animations: {
-                
-                fromViewController.view.alpha = 0
-            
-            }) { (finished: Bool) -> Void in
-            
-                fromViewController.removeFromParentViewController()
-                transitionContext.completeTransition(true)
-                
-                
-                println("animating end transition")
-            
-            }
+            UIView.animateWithDuration(duration/1.5,
+                delay: 0,
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: {
+
+                    fromViewController.view.alpha = 0
+                    toViewController.view.transform = CGAffineTransformIdentity
+                    
+                }, completion: { (finished: Bool) -> Void in
+                    fromViewController.removeFromParentViewController()
+                    transitionContext.completeTransition(true)
+            })
         }
+        
+        
     }
 }

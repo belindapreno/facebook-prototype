@@ -56,45 +56,61 @@ class FeedViewController: UIViewController {
     @IBAction func onTapPhoto(sender: AnyObject) {
         
         tappedImageView = sender.view as UIImageView
-        
         performSegueWithIdentifier("photoCustomSegue", sender: self)
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         
-        transition = CustomSegue()
-        var duration = 0.4
         
-        var window = UIApplication.sharedApplication().keyWindow
-        var frame = window.convertRect(tappedImageView.frame, fromView: self.view)
-        var newImageView = UIImageView(image: tappedImageView.image)
-        newImageView.frame = frame
-        newImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        
-        window.addSubview(newImageView)
-        
-        transition.duration = duration
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            newImageView.frame = CGRect(x: 0, y: 52, width: 320, height: 480)
-            }) { (finished: Bool) -> Void in
-                UIView.animateWithDuration(0.4, animations: {
-                    newImageView.alpha = 0
-                    }, completion: { (finished: Bool) -> Void in
-                        newImageView.removeFromSuperview()
-                })
-        }
+        if segue.identifier == "photoCustomSegue" {
 
-
+            var destinationVC = segue.destinationViewController as PhotoViewController
+            var window = UIApplication.sharedApplication().keyWindow
+            var frame = window.convertRect(tappedImageView.frame, fromView: self.scrollView)
             
-        var destinationViewController = segue.destinationViewController as PhotoViewController
-        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationViewController.transitioningDelegate = transition
-        destinationViewController.image = tappedImageView.image
-        
+            destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+            
+            destinationVC.image = tappedImageView.image
+            destinationVC.coordinates = frame
+            destinationVC.originVC = self
+            
+            var duration = 0.3
+            
+            transition = CustomSegue()
+            transition.duration = duration
+            
+            var newImage = UIImageView(image: tappedImageView.image)
+            newImage.frame = frame
+            newImage.contentMode = UIViewContentMode.ScaleAspectFit
+            newImage.clipsToBounds = true
+            
+            var imageSize = newImage.image.size
+            
+            window.addSubview(newImage)
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                newImage.frame = CGRect(x: 0, y: 80, width: 320, height: 480)
+                newImage.center = window.center
+                }) { (finished: Bool) -> Void in
+                    UIView.animateWithDuration(0.1, animations: {
+                        newImage.alpha = 0
+                        }, completion: { (finished: Bool) -> Void in
+                            newImage.removeFromSuperview()
+                    })
+            }
+            
+            destinationVC.transitioningDelegate = transition
+        }
     }
     
+    /*
+    // MARK: - Navigation
     
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+    }
+    */
     
 }

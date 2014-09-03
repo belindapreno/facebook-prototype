@@ -14,21 +14,24 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var photoActionsImageView: UIImageView!
-   
     @IBOutlet weak var mainImageView: UIImageView!
     
     var image: UIImage!
-    var transition: CustomSegue!
-
+    var coordinates: CGRect!
+    var originVC: FeedViewController!
+    var window = UIApplication.sharedApplication().keyWindow
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
-        
         scrollView.contentSize = CGSizeMake(320,700)
         
+        doneButton.alpha = 0
+        photoActionsImageView.alpha = 0
+        mainImageView.alpha = 0
+        
         mainImageView.image = image
-        mainImageView.hidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -39,7 +42,52 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        mainImageView.hidden = false
+        
+        doneButton.alpha = 0
+        photoActionsImageView.alpha = 0
+        mainImageView.alpha = 1
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.doneButton.alpha = 1
+            self.photoActionsImageView.alpha = 1
+        })
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        var offset = scrollView.contentOffset.y
+        
+        mainImageView.alpha = 0
+        doneButton.alpha = 0
+        photoActionsImageView.alpha = 0
+
+        var destinationVC = originVC
+        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+        
+        var duration = 0.4
+        
+        var newImage = UIImageView(image: mainImageView.image)
+        
+        var frame = CGRect(x: 0, y: 0, width: 320, height: 480)
+    
+        newImage.frame = frame
+        newImage.center = mainImageView.center
+        newImage.center.y -= offset
+        newImage.contentMode = UIViewContentMode.ScaleAspectFill
+        newImage.clipsToBounds = true
+        
+        window.addSubview(newImage)
+        
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            newImage.frame = self.coordinates
+            }) { (finished: Bool) -> Void in
+                UIView.animateWithDuration(0.1, animations: {
+                    newImage.alpha = 0
+                    }, completion: { (finished: Bool) -> Void in
+                        newImage.removeFromSuperview()
+                })
+        }
+        
     }
     
     @IBAction func onDoneButton(sender: AnyObject) {
@@ -55,7 +103,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
-
+        
         
         UIView.animateWithDuration(2, animations: {
             self.view.backgroundColor = UIColor(white: 0, alpha: 0)
@@ -71,60 +119,37 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
             
-        var y = scrollView.contentOffset.y
-        
-        if y < -20 {
+            var yOffset = scrollView.contentOffset.y
             
-            dismissViewControllerAnimated(true, completion: nil)
-
-        } else {
+            if yOffset < -20 {
+                
+                dismissViewControllerAnimated(true, completion: nil)
+                
+            } else {
+                
+                UIView.animateWithDuration(0.4, animations: {
+                    self.doneButton.alpha = 1
+                    self.photoActionsImageView.alpha = 1
+                    self.view.backgroundColor = UIColor(white: 0, alpha: 1)
+                    }, completion: nil)
+                
+            }
             
-            println("TEST")
-
-            UIView.animateWithDuration(0.4, animations: {
-                self.doneButton.alpha = 1
-                self.photoActionsImageView.alpha = 1
-                self.view.backgroundColor = UIColor(white: 0, alpha: 1)
-            }, completion: nil)
-            
-        }
-        
     }
     
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
-    
+        
+        UIView.animateWithDuration(2, animations: {
+            self.view.backgroundColor = UIColor(white: 0, alpha: 1)
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.doneButton.alpha = 1
+            self.photoActionsImageView.alpha = 1
+            }, completion: nil)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-                
-        transition = CustomSegue()
-        var duration = 0.4
-        
-        var window = UIApplication.sharedApplication().keyWindow
-        var frame = window.convertRect(mainImageView.frame, fromView: self.view)
-        var newImageView = UIImageView(image: mainImageView.image)
-        newImageView.frame = frame
-        newImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        
-        window.addSubview(newImageView)
-        
-        transition.duration = duration
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            newImageView.frame = CGRect(x: 16, y: 106, width: 288, height: 236)
-            }) { (finished: Bool) -> Void in
-                UIView.animateWithDuration(0.4, animations: {
-                    newImageView.alpha = 0
-                    }, completion: { (finished: Bool) -> Void in
-                        newImageView.removeFromSuperview()
-                })
-        }
-        
-        
-    }
-    
-
 
 }
